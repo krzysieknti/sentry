@@ -26,6 +26,8 @@ class MigrationCartalystSentryInstallResources extends Migration {
                 $table->index('value');
                 $table->index('name');
             });
+
+
         }
     }
 

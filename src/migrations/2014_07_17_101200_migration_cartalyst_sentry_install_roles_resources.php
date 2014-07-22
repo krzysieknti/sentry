@@ -16,11 +16,10 @@ class MigrationCartalystSentryInstallRolesResources extends Migration {
             {
                 $table->increments('id');
                 $table->integer('role_id')->unsigned()->nullable();
+                $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
 
-                // We'll need to ensure that MySQL uses the InnoDB engine to
-                // support the indexes, other engines aren't affected.
-                $table->engine = 'InnoDB';
-                $table->index('name');
+                $table->integer('resource_id')->unsigned()->nullable();
+                $table->foreign('resource_id')->references('id')->on('resources')->onDelete('cascade');
             });
         }
     }
