@@ -15,9 +15,7 @@ class MigrationCartalystSentryInstallRolesResources extends Migration {
             Schema::create('roles_resources', function($table)
             {
                 $table->increments('id');
-                $table->integer('role_o')->unsigned()->nullable();
-
-
+                $table->integer('role_id')->unsigned()->nullable();
 
                 // We'll need to ensure that MySQL uses the InnoDB engine to
                 // support the indexes, other engines aren't affected.
