@@ -12,6 +12,8 @@ class MigrationCartalystSentryAlterRoles extends Migration {
     public function up()
     {
         if (Schema::hasTable('roles')){
+            DB::table('roles')->delete();
+
             Schema::table('roles', function($table)
             {
                 $table->dropColumn('permissions');
@@ -22,7 +24,7 @@ class MigrationCartalystSentryAlterRoles extends Migration {
                 $table->string('code');
             });
 
-            DB::table('roles')->delete();
+
 
             DB::table('roles')->insert(
                 array(
