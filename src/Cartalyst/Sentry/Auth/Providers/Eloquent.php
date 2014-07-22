@@ -3,6 +3,7 @@
 
 
 class EloquentProvider implements AuthProviderInferface{
+
     /**
      * metoda autoryzacyjna
      * @param array $credentianls
