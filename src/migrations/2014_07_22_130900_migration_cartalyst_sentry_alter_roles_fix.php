@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class MigrationCartalystSentryAlterRoles extends Migration {
+class MigrationCartalystSentryAlterRolesFix extends Migration {
 
     /**
      * Run the migrations.
