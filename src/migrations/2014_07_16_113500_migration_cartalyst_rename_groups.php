@@ -12,8 +12,18 @@ class MigrationCartalystRenameGroups extends Migration {
     {
         if (Schema::hasTable('groups')){
             Schema::rename('groups', 'roles');
-            DB::statement("ALTER TABLE `roles` ALTER COLUMN `created_at` SET DEFAULT now();");
-            DB::statement("ALTER TABLE `roles` ALTER COLUMN `updated_at` SET DEFAULT now();");
+
+            Schema::table('roles', function($table)
+            {
+                $table->dropColumn('created_at');
+                $table->dropColumn('updated_at');
+            });
+
+            Schema::table('roles', function($table)
+            {
+                $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+                $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            });
         }
     }
 
@@ -26,8 +36,8 @@ class MigrationCartalystRenameGroups extends Migration {
     {
         if (Schema::hasTable('roles')){
             Schema::rename('roles', 'groups');
-            DB::statement("ALTER TABLE `groups` ALTER COLUMN `created_at` DROP DEFAULT;");
-            DB::statement("ALTER TABLE `groups` ALTER COLUMN `updated_at` DROP DEFAULT;");
+            //DB::statement("ALTER TABLE `groups` ALTER COLUMN `created_at` DROP DEFAULT;");
+           // DB::statement("ALTER TABLE `groups` ALTER COLUMN `updated_at` DROP DEFAULT;");
         }
     }
 
